@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7cffba7f7140413e835e5372c6b70ac2" Name="Diagram1">
+        <EntityTypeShape EntityType="AtosPayrollModel.Employee" Width="2.25" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtosPayrollModel.Customer" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="AtosPayrollModel.ExpenseItem" Width="3.125" PointX="1.125" PointY="8.75" />
+        <EntityTypeShape EntityType="AtosPayrollModel.CustomerEmployee" Width="2.5" PointX="7.125" PointY="0.875" />
+        <EntityTypeShape EntityType="AtosPayrollModel.MonthlyExpenseClaim" Width="3.125" PointX="5.125" PointY="8.625" />
+        <AssociationConnector Association="AtosPayrollModel.CustomerCustomerEmployee" />
+        <AssociationConnector Association="AtosPayrollModel.CustomerMonthlyExpenseClaim" />
+        <AssociationConnector Association="AtosPayrollModel.CustomerEmployeeMonthlyExpenseClaim" />
+        <AssociationConnector Association="AtosPayrollModel.ExpenseItemMonthlyExpenseClaim" />
+        <EntityTypeShape EntityType="AtosPayrollModel.EmployeeRole" Width="1.5" PointX="3.375" PointY="0.625" />
+        <AssociationConnector Association="AtosPayrollModel.EmployeeRoleEmployee" />
+        <AssociationConnector Association="AtosPayrollModel.EmployeeRoleEmployeeReportTo" />
+        <EntityTypeShape EntityType="AtosPayrollModel.Location" Width="1.5" PointX="0.625" PointY="5.625" />
+        <AssociationConnector Association="AtosPayrollModel.LocationEmployee" />
+        <EntityTypeShape EntityType="AtosPayrollModel.Module" Width="1.5" PointX="2.875" PointY="13.75" />
+        <EntityTypeShape EntityType="AtosPayrollModel.Status" Width="1.5" PointX="5.75" PointY="13.5" />
+        <AssociationConnector Association="AtosPayrollModel.ModuleStatus" />
+        <AssociationConnector Association="AtosPayrollModel.StatusMonthlyExpenseClaim" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

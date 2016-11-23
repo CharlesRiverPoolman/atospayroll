@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Atos Payroll System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#spantitle").hover(function () {
+                $(this).css("color", "mediumpurple");               
+            });
+            $("#spantitle").mouseleave(function () {
+                $(this).css("color", "black");
+            });
+        });
+    </script>
+   
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Atos Payroll System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            Monthly Expsense Claims
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Notify Monthly Expense Claims", "Index", "NotifyMonthlyExpenseClaims")</li>
+                            <li>@Html.ActionLink("Monthly Expense Claims", "Index", "MonthlyExpenseClaims")</li>
+                        </ul>
+                    </div>
+                   </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                Settings
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="btn-primary">@Html.ActionLink("Employees", "Index", "Employees")</li>
+                                <li class="btn-primary">@Html.ActionLink("Employee Roles","Index", "EmployeeRoles")</li>
+                                <li class="btn-primary">@Html.ActionLink("Locations","Index", "Locations")</li>
+                                <li class="navbar-nav">@Html.ActionLink("Customers", "Index", "Customers")</li>
+                                <li class="navbar-nav">@Html.ActionLink("Expense Items", "Index", "ExpenseItems")</li>
+                                <li class="navbar-nav">@Html.ActionLink("Customer Employees", "Index", "CustomerEmployees")</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li><a href="http://za.atos.net/en-za/home/contact-us/contact-form.html">Contact</a></li>
+                   @* <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+                </ul>
+
+                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
+                @*@Html.Partial("_LoginPartial")*@
+                
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">       
+        <span>
+            <img src="~/Content/Images/logo-atos-olympics.png" />
+            <a  href="http://za.atos.net/en-za/home/digital-journey.html" 
+               style="color:black; text-decoration:none;" 
+               id="taglinelink" title="Trusted partner for your Digital Journey">
+            <span id="spantitle" style="font-size:x-large">Trusted partner for your <b>Digital Journey</b></span></a>
+      
+        </span>
+      
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Atos Payroll System</p>
+            </footer>
+</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

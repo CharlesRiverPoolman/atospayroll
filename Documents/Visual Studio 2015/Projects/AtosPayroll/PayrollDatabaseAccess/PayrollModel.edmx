@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AtosPayrollModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CustomerEmployees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="EmployeeRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Level" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeNo" Type="varchar" MaxLength="8" />
+          <Property Name="Account" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="EmployeeRoleID" Type="int" Nullable="false" />
+          <Property Name="EmployeeRoleReportToID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ExpenseItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpenseItemName" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="MonthlyExpenseClaims">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerEmployeeID" Type="int" Nullable="false" />
+          <Property Name="ExpenseItemID" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WBS" Type="varchar" MaxLength="20" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Approved" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AtosPayrollModelStoreContainer">
+          <EntitySet Name="CustomerEmployees" EntityType="Self.CustomerEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeRoles" EntityType="Self.EmployeeRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseItems" EntityType="Self.ExpenseItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyExpenseClaims" EntityType="Self.MonthlyExpenseClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AtosPayrollModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Account" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmployeeRole" Relationship="AtosPayrollModel.EmployeeRoleEmployee" FromRole="Employee" ToRole="EmployeeRole" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeRoleID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeRoleReportToID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EmployeeRoleReportTo" Relationship="AtosPayrollModel.EmployeeRoleEmployeeReportTo" FromRole="Employee" ToRole="EmployeeRole" />
+          <NavigationProperty Name="Location" Relationship="AtosPayrollModel.LocationEmployee" FromRole="Employee" ToRole="Location" />
+        </EntityType>
+        <EntityContainer Name="AtosPayrollEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Customers" EntityType="AtosPayrollModel.Customer" />
+          <EntitySet Name="ExpenseItems" EntityType="AtosPayrollModel.ExpenseItem" />
+          <EntitySet Name="CustomerEmployees" EntityType="AtosPayrollModel.CustomerEmployee" />
+          <EntitySet Name="MonthlyExpenseClaims" EntityType="AtosPayrollModel.MonthlyExpenseClaim" />
+          <AssociationSet Name="CustomerCustomerEmployee" Association="AtosPayrollModel.CustomerCustomerEmployee">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CustomerEmployee" EntitySet="CustomerEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerMonthlyExpenseClaim" Association="AtosPayrollModel.CustomerMonthlyExpenseClaim">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="MonthlyExpenseClaim" EntitySet="MonthlyExpenseClaims" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerEmployeeMonthlyExpenseClaim" Association="AtosPayrollModel.CustomerEmployeeMonthlyExpenseClaim">
+            <End Role="CustomerEmployee" EntitySet="CustomerEmployees" />
+            <End Role="MonthlyExpenseClaim" EntitySet="MonthlyExpenseClaims" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenseItemMonthlyExpenseClaim" Association="AtosPayrollModel.ExpenseItemMonthlyExpenseClaim">
+            <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+            <End Role="MonthlyExpenseClaim" EntitySet="MonthlyExpenseClaims" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeRoles" EntityType="AtosPayrollModel.EmployeeRole" />
+          <AssociationSet Name="EmployeeRoleEmployee" Association="AtosPayrollModel.EmployeeRoleEmployee">
+            <End Role="EmployeeRole" EntitySet="EmployeeRoles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeRoleEmployeeReportTo" Association="AtosPayrollModel.EmployeeRoleEmployeeReportTo">
+            <End Role="EmployeeRole" EntitySet="EmployeeRoles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Locations" EntityType="AtosPayrollModel.Location" />
+          <AssociationSet Name="LocationEmployee" Association="AtosPayrollModel.LocationEmployee">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Modules" EntityType="AtosPayrollModel.Module" />
+          <EntitySet Name="Status" EntityType="AtosPayrollModel.Status" />
+          <AssociationSet Name="ModuleStatus" Association="AtosPayrollModel.ModuleStatus">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="StatusMonthlyExpenseClaim" Association="AtosPayrollModel.StatusMonthlyExpenseClaim">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="MonthlyExpenseClaim" EntitySet="MonthlyExpenseClaims" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CustomerEmployees" Relationship="AtosPayrollModel.CustomerCustomerEmployee" FromRole="Customer" ToRole="CustomerEmployee" />
+          <NavigationProperty Name="MonthlyExpenseClaims" Relationship="AtosPayrollModel.CustomerMonthlyExpenseClaim" FromRole="Customer" ToRole="MonthlyExpenseClaim" />
+        </EntityType>
+        <EntityType Name="ExpenseItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpenseItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MonthlyExpenseClaims" Relationship="AtosPayrollModel.ExpenseItemMonthlyExpenseClaim" FromRole="ExpenseItem" ToRole="MonthlyExpenseClaim" />
+        </EntityType>
+        <EntityType Name="CustomerEmployee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="AtosPayrollModel.CustomerCustomerEmployee" FromRole="CustomerEmployee" ToRole="Customer" />
+          <NavigationProperty Name="MonthlyExpenseClaims" Relationship="AtosPayrollModel.CustomerEmployeeMonthlyExpenseClaim" FromRole="CustomerEmployee" ToRole="MonthlyExpenseClaim" />
+        </EntityType>
+        <EntityType Name="MonthlyExpenseClaim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerEmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="ExpenseItemID" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WBS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="AtosPayrollModel.CustomerMonthlyExpenseClaim" FromRole="MonthlyExpenseClaim" ToRole="Customer" />
+          <NavigationProperty Name="CustomerEmployee" Relationship="AtosPayrollModel.CustomerEmployeeMonthlyExpenseClaim" FromRole="MonthlyExpenseClaim" ToRole="CustomerEmployee" />
+          <NavigationProperty Name="ExpenseItem" Relationship="AtosPayrollModel.ExpenseItemMonthlyExpenseClaim" FromRole="MonthlyExpenseClaim" ToRole="ExpenseItem" />
+          <NavigationProperty Name="Status" Relationship="AtosPayrollModel.StatusMonthlyExpenseClaim" FromRole="MonthlyExpenseClaim" ToRole="Status" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Approved" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="CustomerCustomerEmployee">
+          <End Type="AtosPayrollModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="AtosPayrollModel.CustomerEmployee" Role="CustomerEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerEmployee">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerMonthlyExpenseClaim">
+          <End Type="AtosPayrollModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="AtosPayrollModel.MonthlyExpenseClaim" Role="MonthlyExpenseClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonthlyExpenseClaim">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerEmployeeMonthlyExpenseClaim">
+          <End Type="AtosPayrollModel.CustomerEmployee" Role="CustomerEmployee" Multiplicity="1" />
+          <End Type="AtosPayrollModel.MonthlyExpenseClaim" Role="MonthlyExpenseClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerEmployee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonthlyExpenseClaim">
+              <PropertyRef Name="CustomerEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenseItemMonthlyExpenseClaim">
+          <End Type="AtosPayrollModel.ExpenseItem" Role="ExpenseItem" Multiplicity="1" />
+          <End Type="AtosPayrollModel.MonthlyExpenseClaim" Role="MonthlyExpenseClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseItem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonthlyExpenseClaim">
+              <PropertyRef Name="ExpenseItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmployeeRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employees" Relationship="AtosPayrollModel.EmployeeRoleEmployee" FromRole="EmployeeRole" ToRole="Employee" />
+          <NavigationProperty Name="EmployeesReportTo" Relationship="AtosPayrollModel.EmployeeRoleEmployeeReportTo" FromRole="EmployeeRole" ToRole="Employee" />
+        </EntityType>
+        <Association Name="EmployeeRoleEmployee">
+          <End Type="AtosPayrollModel.EmployeeRole" Role="EmployeeRole" Multiplicity="1" />
+          <End Type="AtosPayrollModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeRoleEmployeeReportTo">
+          <End Type="AtosPayrollModel.EmployeeRole" Role="EmployeeRole" Multiplicity="1" />
+          <End Type="AtosPayrollModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeRoleReportToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employees" Relationship="AtosPayrollModel.LocationEmployee" FromRole="Location" ToRole="Employee" />
+        </EntityType>
+        <Association Name="LocationEmployee">
+          <End Type="AtosPayrollModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="AtosPayrollModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Status" Relationship="AtosPayrollModel.ModuleStatus" FromRole="Module" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Module" Relationship="AtosPayrollModel.ModuleStatus" FromRole="Status" ToRole="Module" />
+          <NavigationProperty Name="MonthlyExpenseClaims" Relationship="AtosPayrollModel.StatusMonthlyExpenseClaim" FromRole="Status" ToRole="MonthlyExpenseClaim" />
+        </EntityType>
+        <Association Name="ModuleStatus">
+          <End Type="AtosPayrollModel.Module" Role="Module" Multiplicity="1" />
+          <End Type="AtosPayrollModel.Status" Role="Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StatusMonthlyExpenseClaim">
+          <End Type="AtosPayrollModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="AtosPayrollModel.MonthlyExpenseClaim" Role="MonthlyExpenseClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MonthlyExpenseClaim">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AtosPayrollModelStoreContainer" CdmEntityContainer="AtosPayrollEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="AtosPayrollModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="EmployeeRoleReportToID" ColumnName="EmployeeRoleReportToID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmployeeRoleID" ColumnName="EmployeeRoleID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="AtosPayrollModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseItems">
+            <EntityTypeMapping TypeName="AtosPayrollModel.ExpenseItem">
+              <MappingFragment StoreEntitySet="ExpenseItems">
+                <ScalarProperty Name="ExpenseItemName" ColumnName="ExpenseItemName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerEmployees">
+            <EntityTypeMapping TypeName="AtosPayrollModel.CustomerEmployee">
+              <MappingFragment StoreEntitySet="CustomerEmployees">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyExpenseClaims">
+            <EntityTypeMapping TypeName="AtosPayrollModel.MonthlyExpenseClaim">
+              <MappingFragment StoreEntitySet="MonthlyExpenseClaims">
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ExpenseItemID" ColumnName="ExpenseItemID" />
+                <ScalarProperty Name="CustomerEmployeeID" ColumnName="CustomerEmployeeID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="WBS" ColumnName="WBS" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeRoles">
+            <EntityTypeMapping TypeName="AtosPayrollModel.EmployeeRole">
+              <MappingFragment StoreEntitySet="EmployeeRoles">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="AtosPayrollModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="AtosPayrollModel.Module">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="AtosPayrollModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

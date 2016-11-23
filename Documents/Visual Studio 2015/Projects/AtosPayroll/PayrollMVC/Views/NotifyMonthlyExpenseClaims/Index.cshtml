@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "NotifyMonthlyExpenseClaims";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#SendMail').click(function () {
+            var roleid = $('#Roles').val();
+             $.ajax({
+               // type: "POST",
+                url: "NotifyMonthlyExpenseClaims/SendMail", // the method we are calling
+                contentType: "application/json; charset=utf-8",
+                data: { roleid: roleid },
+               // dataType: "json",
+                success: function (result) {
+                   // alert('Yay! It worked!');
+                   var strRetMsg = window.location = '/';
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", strRetMsg,false);
+                }
+                 ,
+                error: function (result) {
+                    alert('Oh no :(Did not work)');                    
+                    window.close();
+                }
+            });
+        });
+    });
+        
+
+</script>
+
+<h2>Notify Monthly Expense Claims</h2>
+<br />
+<h3>Send Mail to</h3>
+<br />
+@Html.DropDownList("Roles", (ViewBag.EmployeeRoleID as SelectList))
+<br /><br />
+<input id="SendMail" type="button" name="command" value="SendMail" />
+
+
+
+
