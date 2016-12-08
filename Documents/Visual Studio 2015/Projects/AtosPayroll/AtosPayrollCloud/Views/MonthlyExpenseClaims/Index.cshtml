@@ -1,0 +1,123 @@
+﻿@model IEnumerable<PayrollDatabaseAccess.MonthlyExpenseClaim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#submit').click(function () {
+            var buttontext = $(this).val();
+             $.ajax({
+               // type: "POST",
+                url: "MonthlyExpenseClaims/SendMail", // the method we are calling
+                contentType: "application/json; charset=utf-8",
+                data: { buttontext: buttontext },
+               // dataType: "json",
+                success: function (result) {                 
+                   var strRetMsg = window.location.href = '/Home';
+                  // Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", strRetMsg, false);
+
+                }
+                 ,
+                error: function (result) {
+                    alert('Oh no :(Did not work)');
+                    window.close();
+                }
+            });
+        });
+    });
+</script>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WBS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerEmployee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseItem.ExpenseItemName)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WBS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmployee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpenseItem.ExpenseItemName)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+    <tr>
+        <td>
+          Total:  @ViewBag.TotalClaims
+        </td>
+    </tr>
+
+</table>
+<input id="submit" type="submit" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   @if (ViewBag.Role == "Originator")
+   {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").val("Submit to Line Manager");
+        });
+</script>
+}
+else if (ViewBag.Role == "Line Manager")
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").val("Submit to HR Manager");
+        });
+    </script>
+   }
+
+}
